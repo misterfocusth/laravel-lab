@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BooksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [BooksController::class, 'getPopularBooks']);
 
 Route::get('/hello', function () {
     return "World";
 });
+
+// Register
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+Route::post('/register', [UserController::class, 'store'])->middleware('guest');
+
+// Login
+Route::get('/login', [UserController::class, 'index'])->middleware('guest');
+Route::post('/login', [UserController::class, 'login'])->middleware('guest');
+
+// Logout
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 Route::get('html', function () {
     return '<h1>Hello World</h1>';

@@ -10,12 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 class BooksController extends Controller
 {
-    public function getPopularBooks()
-    {
-        $books = Books::latest()->limit(6)->get();
-        return view('home', ['books' => $books]);
-    }
-
     /**
      * Display a listing of the resource.
      */
