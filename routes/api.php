@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BooksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,15 @@ Route::post('/user/register', [UserController::class, 'store']);
 
 // Get ToDo By ID
 Route::get('/todo/{id}', [TodoController::class, 'show']);
+
+// BOOKS: GET All Books
+Route::get('/books', [BooksController::class, 'index']);
+
+// BOOKS: Get Book By ID
+Route::get('/books/{id}', [BooksController::class, 'show']);
+
+// BOOKS: POST Create Book
+Route::post('/books', [BooksController::class, 'store']);
+
+// BOOKS: Get Books By Author ID
+Route::get('/authors/{author}/books', [BooksController::class, 'getBooksByAuthor']);
